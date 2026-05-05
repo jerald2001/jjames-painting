@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude mcp:*)",
+      "Bash(mkdir -p client-brief assets/icons/base assets/icons/industry)",
+      "Bash(touch assets/icons/base/.gitkeep assets/icons/industry/.gitkeep)",
+      "Bash(cd:*)",
+      "Bash(echo \"EXIT:$?\")"
+    ]
+  }
+}
