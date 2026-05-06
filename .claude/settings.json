@@ -1,0 +1,53 @@
+{
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "web-asset-generator@web-asset-generator-marketplace": true,
+    "code-simplifier@claude-plugins-official": true,
+    "ui-ux-pro-max@ui-ux-pro-max-skill": true,
+    "ralph-skills@ralph-marketplace": true,
+    "claude-seo@agricidaniel-seo": true,
+    "ralph-loop@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "ralph-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "snarktank/ralph"
+      }
+    },
+    "superpowers-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers-marketplace"
+      }
+    },
+    "web-asset-generator-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "alonw0/web-asset-generator"
+      }
+    },
+    "ui-ux-pro-max-skill": {
+      "source": {
+        "source": "github",
+        "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+      }
+    },
+    "agricidaniel-seo": {
+      "source": {
+        "source": "github",
+        "repo": "AgriciDaniel/claude-seo"
+      }
+    }
+  },
+  "permissions": {
+    "allow": [
+      "Bash(claude mcp:*)",
+      "Bash(mkdir -p client-brief assets/icons/base assets/icons/industry)",
+      "Bash(touch assets/icons/base/.gitkeep assets/icons/industry/.gitkeep)",
+      "Bash(cd:*)",
+      "Bash(echo \"EXIT:$?\")"
+    ]
+  }
+}
