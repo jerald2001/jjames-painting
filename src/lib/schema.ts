@@ -178,6 +178,24 @@ export function personSchema({
   return node;
 }
 
+export function contactPageSchema({
+  url,
+  description,
+}: {
+  url: string;
+  description: string;
+}): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${url}/#contactpage`,
+    url,
+    description,
+    about: { "@id": ORGANIZATION_ID },
+    mainEntity: { "@id": ORGANIZATION_ID },
+  };
+}
+
 export function aboutPageSchema({
   name,
   description,

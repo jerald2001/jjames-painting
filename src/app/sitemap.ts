@@ -25,6 +25,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   };
 
+  const contact: MetadataRoute.Sitemap[number] = {
+    url: `${SITE_URL}/contact`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.9,
+  };
+
   const services: MetadataRoute.Sitemap = PRIORITY_SERVICES.map((s) => ({
     url: `${SITE_URL}/services/${s.slug}`,
     lastModified,
@@ -46,5 +53,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [home, about, ...services, projectsIndex, ...projects];
+  return [home, about, contact, ...services, projectsIndex, ...projects];
 }
