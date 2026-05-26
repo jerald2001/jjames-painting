@@ -9,22 +9,24 @@ Brief §20 risk: "consolidating 48 suburb pages without a proper redirect plan w
 
 ## What
 
-**165 explicit 301-class redirects** (Next.js returns HTTP 308, which preserves the request method and passes link equity identically to a 301 for search engines).
+**164 explicit 301-class redirects** (Next.js returns HTTP 308, which preserves the request method and passes link equity identically to a 301 for search engines).
 
 | Destination | Redirect count | Notes |
 |---|---|---|
 | `/locations/caloundra` | 25 | Catches the cluster of south-coast off-list suburbs (bells-creek, currimundi, pelican-waters, parklands, corbould-park) plus Caloundra's own variants |
 | `/locations/kawana` | 19 | Coast band (Warana, Twin Waters, Maroochydore) |
 | `/locations/forest-glen` | 18 | Inland north (Nambour, Woombye, Bli Bli) |
-| `/services/boutique-house-painting` | 15 | All `/high-end-project-painters-in-X` URLs |
-| `/` | 15 | Generic-painter URLs, testimonial detail pages, category archives |
+| `/services/boutique-house-painting` | 14 | All `/high-end-project-painters-in-X` URLs + `/high-end-project-painters` + `/category/high-end-project-painters` |
 | `/locations` | 10 | Region-wide URLs + unknown-suburb fallbacks |
 | `/locations/glasshouse-mountains` | 10 | Landsborough + own variants |
 | `/locations/sippy-downs` | 9 | Mountain Creek + own variants |
 | `/locations/aura` | 9 | Nirimba + own variants |
+| `/testimonials` | 6 | All `/wpt-testimonial/{slug}` legacy URLs |
 | `/locations/maleny` | 6 | Own variants + typo `maleney` |
 | `/locations/{buderim,coolum,noosa,peregian,sunshine-beach}` | 5 each | Own URL conventions only |
-| `/contact` | 2 | `/commercial`, `/industrial` (non-priority, route to inquiry) |
+| `/services` | 3 | `/painters`, `/category/house-painter`, `/category/painters` |
+| `/` | 3 | Region-wide search URLs (`/house-painter-near-me`, `/house-painter-in-sunshine-coast-region-qld`, `/painters-on-the-sunshine-coast-region-qld`) |
+| `/services#{residential,commercial,industrial,interior,exterior}` | 1 each | Legacy service lines, anchored on `/services` index |
 | `/contact#quote` | 1 | `/quote` |
 | `/about` | 1 | `/about-us` |
 
@@ -40,15 +42,16 @@ All 106 URLs from the live WordPress sitemap resolve through the redirect map to
 | `/about-us` | `/about` |
 | `/contact` | `/contact` (no change) |
 | `/quote` | `/contact#quote` |
-| `/testimonials` | `/` (until a real /testimonials page ships, this is the closest thing) |
-| `/painters`, `/house-painter-near-me`, `/house-painter-in-sunshine-coast-region-qld`, `/painters-on-the-sunshine-coast-region-qld` | `/` |
+| `/painters` | `/services` |
+| `/house-painter-near-me`, `/house-painter-in-sunshine-coast-region-qld`, `/painters-on-the-sunshine-coast-region-qld` | `/` |
 
 ### Service-line pages
 | Old | New |
 |---|---|
 | `/high-end-project-painters` | `/services/boutique-house-painting` |
-| `/residential` | `/services/boutique-house-painting` (closest residential analogue) |
-| `/commercial`, `/industrial` | `/contact` (non-priority services route to inquiry flow) |
+| `/residential` | `/services#residential` |
+| `/commercial` | `/services#commercial` |
+| `/industrial` | `/services#industrial` |
 | `/high-end-project-painters-in-{suburb}` (× 12) | `/services/boutique-house-painting` |
 
 ### Suburb conventions → `/locations/{suburb}`
@@ -84,10 +87,15 @@ The original site ran 14 URLs naming suburbs we don't carry as hubs. Each maps t
 Two URLs (`/house-painting-in-brews`, `/house-painting-in-cartwright-point`) name suburbs we can't confidently place — probably typos or extremely-local nicknames. Mapped to `/locations` index instead of guessing wrong.
 
 ### Testimonial detail pages
-Six `/wpt-testimonial/{slug}` URLs (Alan Cameron, Garry and Jeannette, Grant McDonald, Happy Customer, Lindsay Woods, Phil Osborne). All redirect to `/`. Swap to a real `/testimonials/{slug}` route when the testimonials page ships.
+Six `/wpt-testimonial/{slug}` URLs (Alan Cameron, Garry and Jeannette, Grant McDonald, Happy Customer, Lindsay Woods, Phil Osborne). All redirect to `/testimonials`.
 
 ### Category archives
-Five `/category/{X}` URLs from WordPress's taxonomy. All redirect to `/` or `/services/boutique-house-painting` depending on the category's intent.
+Five `/category/{X}` URLs from WordPress's taxonomy:
+- `/category/exterior-house-painters` → `/services#exterior`
+- `/category/high-end-project-painters` → `/services/boutique-house-painting`
+- `/category/house-painter` → `/services`
+- `/category/interior-painting` → `/services#interior`
+- `/category/painters` → `/services`
 
 ## Deploy checklist
 

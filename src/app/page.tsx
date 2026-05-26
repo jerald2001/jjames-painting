@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { TrustRail } from "@/components/content/trust-rail";
 import { HomeHero } from "@/components/sections/home/hero";
 import { HomeServiceBento } from "@/components/sections/home/service-bento";
@@ -13,6 +14,10 @@ import {
   organizationSchema,
   websiteSchema,
 } from "@/lib/schema";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   const graph = combineGraph(
