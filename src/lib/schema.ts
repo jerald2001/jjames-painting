@@ -145,6 +145,59 @@ function stripHtml(s: string): string {
     .replace(/<[^>]+>/g, "");
 }
 
+/**
+ * Person schema for team / leadership pages.
+ * `worksFor` links the person back to the LocalBusiness graph node.
+ */
+export function personSchema({
+  name,
+  jobTitle,
+  description,
+  imageUrl,
+  sameAs,
+}: {
+  name: string;
+  jobTitle: string;
+  description?: string;
+  imageUrl?: string;
+  sameAs?: string[];
+}): JsonLd {
+  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const node: JsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${SITE_URL}/about/#person-${slug}`,
+    name,
+    jobTitle,
+    worksFor: { "@id": ORGANIZATION_ID },
+    url: `${SITE_URL}/about`,
+  };
+  if (description) node.description = description;
+  if (imageUrl) node.image = imageUrl.startsWith("http") ? imageUrl : `${SITE_URL}${imageUrl}`;
+  if (sameAs && sameAs.length) node.sameAs = sameAs;
+  return node;
+}
+
+export function aboutPageSchema({
+  name,
+  description,
+  url,
+}: {
+  name: string;
+  description: string;
+  url: string;
+}): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${url}/#aboutpage`,
+    name,
+    description,
+    url,
+    about: { "@id": ORGANIZATION_ID },
+  };
+}
+
 export function breadcrumbSchema(
   trail: Array<{ name: string; url: string }>,
 ): JsonLd {
