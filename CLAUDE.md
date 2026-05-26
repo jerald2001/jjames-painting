@@ -94,11 +94,19 @@ Sunshine Coast painting business, family-run since 1985 (formerly Hume and Staff
 
 ## Always Do First (per session)
 
+### Every session
 1. Read this CLAUDE.md status block (above) to see what's done.
-2. Read `PLAN.md` if you're working a specific phase task.
-3. Read `copywriting/anti-slop-kill-list.md` before writing or editing any user-facing text.
-4. Check `git log --oneline -10` to see what shipped recently.
-5. **Stitch MCP** is only required before writing *new* front-end (new page templates, new section types). For copy edits, audits, or polish, skip it.
+2. Check `git log --oneline -10` to see what shipped recently.
+3. Read `PLAN.md` if you're working a specific phase task.
+
+### Read on demand (when the task touches the area)
+4. `client-brief/jjames-painting-website-brief.md` — business context, audiences, positioning, sitemap intent, brand priorities. Read when changing scope, copy direction, or service positioning.
+5. `assets/branding/` — logo and colour reference. Read when touching colours, the wordmark, or generating new visual assets.
+6. `copywriting/README.md` — voice characteristics, contractions, word swaps, three-line sanity check, kitchen-table test. Read before writing or editing any user-facing text.
+7. `copywriting/anti-slop-kill-list.md` — banned words and patterns. Same read trigger as the README; the kill list is the enforcement counterpart.
+
+### Tool-specific
+8. **Stitch MCP** is only required before writing *new* front-end (new page templates, new section types). For copy edits, audits, or polish on existing sections, skip it.
 
 ## Tech Stack
 
