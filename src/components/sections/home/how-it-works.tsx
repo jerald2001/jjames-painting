@@ -36,7 +36,6 @@ export function HomeHowItWorks() {
             <li key={s.n} className="border-t border-navy/15 pt-6">
               <p
                 className="font-heading text-6xl font-medium leading-none tracking-tight text-navy md:text-7xl"
-                style={{ fontVariationSettings: '"opsz" 144' }}
               >
                 {s.n}
               </p>

@@ -59,7 +59,6 @@ export default function ProjectsIndexPage() {
             <Eyebrow>Projects</Eyebrow>
             <h1
               className="font-heading text-5xl font-medium leading-[1.05] tracking-[-0.025em] text-navy md:text-7xl"
-              style={{ fontVariationSettings: '"opsz" 144' }}
             >
               Recent Sunshine Coast paint work.
             </h1>

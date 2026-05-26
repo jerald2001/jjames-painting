@@ -135,7 +135,6 @@ export default function AboutPage() {
             <Eyebrow>About</Eyebrow>
             <h1
               className="font-heading text-5xl font-medium leading-[1.02] tracking-[-0.03em] text-navy md:text-7xl"
-              style={{ fontVariationSettings: '"opsz" 144' }}
             >
               Family business.
               <br />

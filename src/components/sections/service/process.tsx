@@ -40,7 +40,6 @@ export function ServiceProcess({
                 >
                   <p
                     className="font-heading text-6xl font-medium leading-none tracking-tight text-navy md:text-7xl"
-                    style={{ fontVariationSettings: '"opsz" 144' }}
                   >
                     {step.n}
                   </p>

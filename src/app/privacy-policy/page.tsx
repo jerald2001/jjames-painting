@@ -55,7 +55,6 @@ export default function PrivacyPolicyPage() {
             <Eyebrow>Legal</Eyebrow>
             <h1
               className="font-heading text-5xl font-medium leading-[1.02] tracking-[-0.03em] text-navy md:text-6xl"
-              style={{ fontVariationSettings: '"opsz" 144' }}
             >
               Privacy policy.
             </h1>

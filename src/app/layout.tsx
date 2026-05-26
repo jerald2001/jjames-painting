@@ -11,6 +11,8 @@ const fraunces = localFont({
   weight: "100 900",
   style: "normal",
   preload: true,
+  adjustFontFallback: "Times New Roman",
+  fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 const inter = localFont({
@@ -20,6 +22,8 @@ const inter = localFont({
   weight: "100 900",
   style: "normal",
   preload: true,
+  adjustFontFallback: "Arial",
+  fallback: ["system-ui", "-apple-system", "Segoe UI", "Helvetica", "Arial", "sans-serif"],
 });
 
 const SITE_TITLE_DEFAULT =

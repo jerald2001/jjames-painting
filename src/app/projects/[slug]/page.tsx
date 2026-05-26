@@ -120,7 +120,6 @@ export default async function ProjectPage({
           <h1
             id="project-headline"
             className="max-w-3xl font-heading text-4xl font-medium leading-[1.05] tracking-[-0.025em] text-navy md:text-6xl"
-            style={{ fontVariationSettings: '"opsz" 144' }}
           >
             {project.scope}, {project.suburb}.
           </h1>

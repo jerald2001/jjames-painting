@@ -40,7 +40,6 @@ export function ServiceHero({ hero, serviceSlug }: ServiceHeroProps) {
           <h1
             id="service-hero-headline"
             className="font-heading text-5xl font-medium leading-[0.95] tracking-[-0.035em] text-navy sm:text-6xl md:text-7xl lg:text-[5rem]"
-            style={{ fontVariationSettings: '"opsz" 144' }}
           >
             {hero.headline.split("\n").map((line, i, arr) => (
               <span key={i}>

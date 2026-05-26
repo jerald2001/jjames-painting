@@ -39,7 +39,6 @@ export function ServiceFinalCTA({
         <h2
           id="service-final-cta-heading"
           className="font-heading text-4xl font-medium leading-[1.05] tracking-[-0.025em] text-cream md:text-6xl"
-          style={{ fontVariationSettings: '"opsz" 144' }}
         >
           {data.heading}
         </h2>

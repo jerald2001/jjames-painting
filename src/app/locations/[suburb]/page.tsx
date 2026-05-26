@@ -135,7 +135,6 @@ export default async function SuburbHubPage({
           <h1
             id="suburb-headline"
             className="max-w-3xl font-heading text-4xl font-medium leading-[1.02] tracking-[-0.03em] text-navy md:text-7xl"
-            style={{ fontVariationSettings: '"opsz" 144' }}
           >
             {hub.headlinePhrase}.
           </h1>

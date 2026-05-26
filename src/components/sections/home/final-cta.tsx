@@ -35,7 +35,6 @@ export function HomeFinalCTA() {
         <h2
           id="home-cta-headline"
           className="font-heading text-5xl font-medium leading-[1.05] tracking-[-0.025em] text-cream md:text-7xl"
-          style={{ fontVariationSettings: '"opsz" 144' }}
         >
           Ready for a quote?
         </h2>

@@ -88,7 +88,6 @@ export default function LocationsIndexPage() {
             <Eyebrow>Locations</Eyebrow>
             <h1
               className="font-heading text-5xl font-medium leading-[1.02] tracking-[-0.03em] text-navy md:text-7xl"
-              style={{ fontVariationSettings: '"opsz" 144' }}
             >
               Twelve Sunshine Coast
               <br />
