@@ -87,8 +87,10 @@ const explicit: Redirect[] = [
   r("/about-us", "/about"),
   r("/quote", "/contact#quote"),
 
-  // The old "painters" hub redirects to home (no /services index built yet)
-  r("/painters", "/"),
+  // Generic "painters" hub URLs route to the /services index now that it
+  // ships. The "near me" / region URLs stay on / since they're more
+  // location-shopping than service-shopping.
+  r("/painters", "/services"),
   r("/house-painter-near-me", "/"),
   r("/house-painter-in-sunshine-coast-region-qld", "/"),
   r("/painters-on-the-sunshine-coast-region-qld", "/"),
@@ -103,18 +105,19 @@ const explicit: Redirect[] = [
   r("/wpt-testimonial/lindsay-woods", "/"),
   r("/wpt-testimonial/phil-osborne", "/"),
 
-  // Service-line legacy pages
+  // Service-line legacy pages. Legacy services live as anchor sections on
+  // /services, so each lands on the right card via fragment.
   r("/high-end-project-painters", BOUTIQUE),
-  r("/residential", BOUTIQUE),
-  r("/commercial", "/contact"),
-  r("/industrial", "/contact"),
+  r("/residential", "/services#residential"),
+  r("/commercial", "/services#commercial"),
+  r("/industrial", "/services#industrial"),
 
-  // Category archives
-  r("/category/exterior-house-painters", "/"),
+  // Category archives → /services index
+  r("/category/exterior-house-painters", "/services#exterior"),
   r("/category/high-end-project-painters", BOUTIQUE),
-  r("/category/house-painter", "/"),
-  r("/category/interior-painting", "/"),
-  r("/category/painters", "/"),
+  r("/category/house-painter", "/services"),
+  r("/category/interior-painting", "/services#interior"),
+  r("/category/painters", "/services"),
 
   // Off-list /interior-painting-in-X
   r("/interior-painting-in-sunshine-coast-region", LOCATIONS_INDEX),

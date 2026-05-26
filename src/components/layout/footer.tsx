@@ -79,7 +79,7 @@ export function Footer() {
             ))}
             <div className="my-2 h-px w-8 bg-cream/15" aria-hidden="true" />
             {LEGACY_SERVICES.map((s) => (
-              <FooterLink key={s.slug} href={`/services/${s.slug}`}>
+              <FooterLink key={s.slug} href={`/services#${s.slug}`}>
                 {s.name}
               </FooterLink>
             ))}
