@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+
+# Search-time AI crawlers — explicit allow
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Training-only crawlers — blocked
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+Sitemap: https://jjamespaintingcontractorsqld.com.au/sitemap.xml
