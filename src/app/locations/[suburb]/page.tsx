@@ -50,11 +50,13 @@ export async function generateMetadata({
       description: hub.metaDescription,
       url: `/locations/${hub.slug}`,
       type: "website",
+      images: [{ url: "/og/default.webp", width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title: hub.metaTitle,
       description: hub.metaDescription,
+      images: ["/og/default.webp"],
     },
   };
 }

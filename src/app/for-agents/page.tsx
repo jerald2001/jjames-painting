@@ -35,11 +35,20 @@ export const metadata: Metadata = {
     description,
     url: "/for-agents",
     type: "website",
+    images: [
+      {
+        url: "/og/for-agents.webp",
+        width: 1200,
+        height: 630,
+        alt: "Open-plan Sunshine Coast home painted and ready for listing photography",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    images: ["/og/for-agents.webp"],
   },
 };
 

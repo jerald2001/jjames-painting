@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     description,
     url: "/privacy-policy",
     type: "website",
+    images: [{ url: "/og/default.webp", width: 1200, height: 630 }],
   },
   robots: {
     index: true,

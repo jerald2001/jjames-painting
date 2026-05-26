@@ -32,6 +32,17 @@ function isPriorityServiceSlug(s: string): s is PriorityServiceSlug {
   return PRIORITY_SERVICES.some((p) => p.slug === s);
 }
 
+const OG_ALT: Record<PriorityServiceSlug, string> = {
+  "house-pre-sale-painting":
+    "Sunshine Coast home freshly painted and listing-ready by J. James Painting",
+  "rental-property-repaint":
+    "Between-tenancy bedroom freshly repainted by J. James Painting on the Sunshine Coast",
+  "new-home-purchase-painting":
+    "Empty entryway freshly painted between settlement and move-in by J. James Painting",
+  "boutique-house-painting":
+    "Heritage Sunshine Coast Queenslander painted by J. James Painting Contractors",
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -40,6 +51,7 @@ export async function generateMetadata({
   const { service } = await params;
   if (!isPriorityServiceSlug(service)) return {};
   const c = SERVICE_CONTENT[service];
+  const ogImage = `/og/${c.slug}.webp`;
   return {
     title: { absolute: c.metaTitle },
     description: c.metaDescription,
@@ -49,11 +61,15 @@ export async function generateMetadata({
       description: c.metaDescription,
       url: `/services/${c.slug}`,
       type: "website",
+      images: [
+        { url: ogImage, width: 1200, height: 630, alt: OG_ALT[service] },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: c.metaTitle,
       description: c.metaDescription,
+      images: [ogImage],
     },
   };
 }

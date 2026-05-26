@@ -45,11 +45,20 @@ export const metadata: Metadata = {
     title: SITE_TITLE_DEFAULT,
     description: SITE_DESCRIPTION,
     url: "/",
+    images: [
+      {
+        url: "/og/default.webp",
+        width: 1200,
+        height: 630,
+        alt: "Freshly painted single-storey Sunshine Coast home by J. James Painting Contractors",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE_DEFAULT,
     description: SITE_DESCRIPTION,
+    images: ["/og/default.webp"],
   },
 };
 

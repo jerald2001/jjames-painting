@@ -30,11 +30,20 @@ export const metadata: Metadata = {
     description,
     url: "/about",
     type: "profile",
+    images: [
+      {
+        url: "/og/about.webp",
+        width: 1200,
+        height: 630,
+        alt: "Federation-style Sunshine Coast home painted by J. James Painting Contractors",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    images: ["/og/about.webp"],
   },
 };
 
