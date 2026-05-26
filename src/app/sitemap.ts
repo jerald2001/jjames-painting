@@ -33,6 +33,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   };
 
+  const forAgents: MetadataRoute.Sitemap[number] = {
+    url: `${SITE_URL}/for-agents`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  };
+
+  const testimonials: MetadataRoute.Sitemap[number] = {
+    url: `${SITE_URL}/testimonials`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  };
+
+  const privacy: MetadataRoute.Sitemap[number] = {
+    url: `${SITE_URL}/privacy-policy`,
+    lastModified,
+    changeFrequency: "yearly",
+    priority: 0.2,
+  };
+
   const servicesIndex: MetadataRoute.Sitemap[number] = {
     url: `${SITE_URL}/services`,
     lastModified,
@@ -79,11 +100,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     home,
     about,
     contact,
+    forAgents,
+    testimonials,
     servicesIndex,
     ...services,
     projectsIndex,
     ...projects,
     locationsIndex,
     ...locations,
+    privacy,
   ];
 }

@@ -95,15 +95,15 @@ const explicit: Redirect[] = [
   r("/house-painter-in-sunshine-coast-region-qld", "/"),
   r("/painters-on-the-sunshine-coast-region-qld", "/"),
 
-  // Old testimonials index and detail pages land on the home testimonials
-  // section. When a real /testimonials page ships, swap these.
-  r("/testimonials", "/"),
-  r("/wpt-testimonial/alan-cameron", "/"),
-  r("/wpt-testimonial/garry-and-jeannette", "/"),
-  r("/wpt-testimonial/grant-mcdonald", "/"),
-  r("/wpt-testimonial/happy-customer", "/"),
-  r("/wpt-testimonial/lindsay-woods", "/"),
-  r("/wpt-testimonial/phil-osborne", "/"),
+  // Testimonials: index URL stays at /testimonials (Next normalises trailing
+  // slash, no redirect needed). Old testimonial detail pages now resolve to
+  // the testimonials index instead of home.
+  r("/wpt-testimonial/alan-cameron", "/testimonials"),
+  r("/wpt-testimonial/garry-and-jeannette", "/testimonials"),
+  r("/wpt-testimonial/grant-mcdonald", "/testimonials"),
+  r("/wpt-testimonial/happy-customer", "/testimonials"),
+  r("/wpt-testimonial/lindsay-woods", "/testimonials"),
+  r("/wpt-testimonial/phil-osborne", "/testimonials"),
 
   // Service-line legacy pages. Legacy services live as anchor sections on
   // /services, so each lands on the right card via fragment.
