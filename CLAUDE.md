@@ -1,13 +1,104 @@
-# CLAUDE.md — Local Business Website Rebuild
-This is a project to rebuild an existing website of a local business. The goal of this project is to have clean UI, better website architecture, improved SEO and overall better conversions.
+# CLAUDE.md — J. James Painting Contractors rebuild
 
-## Always Do First
+Sunshine Coast painting business, family-run since 1985 (formerly Hume and Staff Painters). Domain: `jjamespaintingcontractorsqld.com.au`. Repositioning around four signature service lines (rental, pre-sale, new-home, boutique) plus the legacy residential/commercial/industrial work.
 
-1. Read `client-brief/` directory. Start with `client-brief.md` if it exists, then process everything else in the folder. Extract business name, industry, location, services, target audience, pages needed.
-2. Read `assets/branding/`. Extract colors from logos, identify reference materials, note any style guides or palettes.
-3. Read `copywriting/README.md` for voice and tone rules.
-4. Check `PLAN.md` to see which phase you're in.
-5. **Invoke the Stitch MCP server** before writing any front-end code. Every session, no exceptions.
+---
+
+## Current project status
+
+**Last updated:** 2026-05-26. Update this block when you finish a meaningful unit of work.
+
+### Phase status
+
+| Phase | Status |
+|---|---|
+| 1. Discovery & Setup | ✅ Done |
+| 2. Layout via Stitch | ✅ Done |
+| 3. Build | ✅ Done |
+| 4. Content & Copy | ✅ Done (client-side content gaps remain — see "Client-confirm holds") |
+| 5. SEO & Polish | 🟡 Infra done, audits pending (see "Phase 5 remaining") |
+| 6. Deploy & Verify | ⬜ Not started |
+
+### Pages built (12 top-level routes, 37 sitemap URLs)
+
+| Route | Notes |
+|---|---|
+| `/` | Home, 10 sections, 1,385 words. LocalBusiness + Organization + WebSite schema. |
+| `/about` | Hero + timeline + Jamie James team card + qualifications + brand partners + CTA. AboutPage + Person schema. |
+| `/contact` | Quote form with conditional fields per service + sidebar. Placeholder Server Action (`JJ-` reference prefix). ContactPage schema. |
+| `/for-agents` | B2B referral landing per brief §9.5. Partner form with **separate Server Action** (`JJA-` prefix). |
+| `/services` | Index with 4 priority cards + 8 legacy anchor cards. |
+| `/services/[slug]` × 4 | Pre-sale, rental, new-home, boutique. 1,150–1,500 words each. Service + FAQPage + BreadcrumbList. |
+| `/projects` | Index of 12 placeholders. |
+| `/projects/[slug]` × 12 | "Case study coming soon" + sidebar with suburb/scope/service. |
+| `/locations` | Index grouped Coast / Hinterland. |
+| `/locations/[slug]` × 12 | Hand-written per-suburb localContext + substrateNotes (no template slop). |
+| `/testimonials` | Sample-banner placeholder + Google reviews link. |
+| `/privacy-policy` | 10-section APP-aligned policy. |
+
+**Zero footer 404s.** Every nav and footer link resolves with HTTP 200.
+
+### Data sources of truth
+
+- `src/lib/brand.ts` — NAP, BUSINESS const, SUBURBS list, PRIORITY_SERVICES, LEGACY_SERVICES, TRUST_RAIL
+- `src/content/services.ts` — per-priority-service content (hero, intro, ROI, process, FAQ, etc.)
+- `src/content/projects.ts` — master 12-project list (consumed by carousel + service pages + project routes)
+- `src/content/suburbs.ts` — per-suburb hub content (localContext, substrateNotes, servicePriority, projectSlugs, ctaLine)
+- `src/lib/redirects.ts` — 165 migration redirects from the old WP site
+- `src/app/sitemap.ts` — auto-regenerates the XML sitemap from all of the above
+
+### SEO infrastructure shipped
+
+- `public/robots.txt` — explicit allow for 6 search-time AI crawlers (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended); disallow for training-only (CCBot, anthropic-ai, Bytespider)
+- `public/llms.txt` — markdown index for AI crawlers (services, suburbs, about, contact, for-agents, reviews, legal)
+- `src/app/sitemap.ts` → `/sitemap.xml` (37 URLs)
+- 301-class migration redirect map — 165 redirects covering all 106 legacy URLs (verified 100% coverage). See `docs/seo/redirect-map.md`.
+- Schema graph: LocalBusiness, Organization, WebSite, Service, FAQPage, BreadcrumbList, Person, AboutPage, ContactPage all emit correctly
+
+### Audit reports
+
+- `docs/seo/phase4-content-audit.md` — content quality 78/100 avg, E-E-A-T 44/100 floor
+- `docs/seo/phase4-geo-audit.md` — GEO readiness 47/100 (lifts to ~75 with verified GBP + LinkedIn presence)
+- `docs/seo/redirect-map.md` — human-readable redirect map + deploy checklist
+
+### Client-confirm holds (do not fill in without explicit client direction)
+
+| Item | Where | Action |
+|---|---|---|
+| Trust rail copy | `src/lib/brand.ts` `TRUST_RAIL` | Held per user direction |
+| Jamie's full name | `src/app/about/page.tsx` `JAMIE` const | Currently "Jamie James" — confirm or correct |
+| Founder's first name | `/about` 1985 timeline cell | Omitted; brief only confirms "Hume and Staff Painters" trading name |
+| Email, ABN, QBCC license, social URLs | `src/lib/brand.ts` `BUSINESS` | Empty strings, conditionally hidden site-wide |
+| Dulux + Taubmans accreditation badges | About page + footer + trust rail | Entitlement check pending per brief §20 open Qs |
+| Real testimonials with consent | `/testimonials`, home testimonials section | Sample banners in place — swap when consent paperwork lands |
+| Original case-study photos | All 12 `/projects/[slug]` | Photography day pending |
+
+### Phase 5 remaining
+
+- OG / Twitter image assets (1200×630) — generate via `claude-seo:seo-image-gen`
+- `claude-seo:seo-technical` audit — crawlability, security headers, INP
+- Schema rich-results validator pass
+- Lighthouse 90+ on all four scores
+- `/blog` + `/blog/[slug]` (brief §9.7 — 6 launch posts, then 2/month)
+- Real photography (client-side blocker)
+
+### Phase 6 readiness
+
+- Vercel deploy
+- Wire real form delivery (Resend or equivalent) at the two swap-points: `src/app/contact/actions.ts` and `src/app/for-agents/actions.ts`
+- Submit `/sitemap.xml` to GSC
+- Capture SEO drift baseline via `claude-seo:seo-drift`
+- Verify GBP NAP matches site
+
+---
+
+## Always Do First (per session)
+
+1. Read this CLAUDE.md status block (above) to see what's done.
+2. Read `PLAN.md` if you're working a specific phase task.
+3. Read `copywriting/anti-slop-kill-list.md` before writing or editing any user-facing text.
+4. Check `git log --oneline -10` to see what shipped recently.
+5. **Stitch MCP** is only required before writing *new* front-end (new page templates, new section types). For copy edits, audits, or polish, skip it.
 
 ## Tech Stack
 
