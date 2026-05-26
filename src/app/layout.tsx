@@ -22,18 +22,35 @@ const inter = localFont({
   preload: true,
 });
 
+const SITE_TITLE_DEFAULT =
+  "Sunshine Coast Painters Since 1985 | J. James Painting";
+const SITE_DESCRIPTION =
+  "Sunshine Coast painters since 1985. Rental, pre-sale, new-home and boutique residential painting across Noosa, Buderim, Caloundra, Maleny and beyond.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://jjamespaintingcontractorsqld.com.au"),
   title: {
-    default: "Painters Sunshine Coast | J. James Painting, Family-Run Since 1985",
+    default: SITE_TITLE_DEFAULT,
     template: "%s | J. James Painting",
   },
-  description:
-    "Sunshine Coast painters since 1985. Rental repaints, pre-sale prep, new-home painting, and boutique residential work across Noosa, Buderim, Caloundra, Sunshine Beach, Maleny and beyond.",
+  description: SITE_DESCRIPTION,
   manifest: "/manifest.webmanifest",
   applicationName: "J. James Painting Contractors",
   authors: [{ name: "J. James Painting Contractors" }],
   formatDetection: { telephone: true, email: true, address: true },
+  openGraph: {
+    type: "website",
+    siteName: "J. James Painting Contractors",
+    locale: "en_AU",
+    title: SITE_TITLE_DEFAULT,
+    description: SITE_DESCRIPTION,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE_DEFAULT,
+    description: SITE_DESCRIPTION,
+  },
 };
 
 export const viewport = {

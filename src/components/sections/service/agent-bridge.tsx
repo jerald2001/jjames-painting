@@ -54,20 +54,6 @@ export function ServiceAgentBridge({
             <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
         </div>
-
-        {data.quote && (
-          <figure className="mt-14 max-w-2xl border-t border-cream/15 pt-8">
-            <blockquote
-              className="font-heading text-xl italic leading-snug text-cream/85 md:text-2xl"
-              dangerouslySetInnerHTML={{
-                __html: `&ldquo;${data.quote.body}&rdquo;`,
-              }}
-            />
-            <figcaption className="mt-4 text-xs font-medium uppercase tracking-[0.18em] text-sky">
-              {data.quote.attribution}
-            </figcaption>
-          </figure>
-        )}
       </Container>
     </section>
   );

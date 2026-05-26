@@ -41,7 +41,7 @@ export async function generateMetadata({
   if (!isPriorityServiceSlug(service)) return {};
   const c = SERVICE_CONTENT[service];
   return {
-    title: c.metaTitle,
+    title: { absolute: c.metaTitle },
     description: c.metaDescription,
     alternates: { canonical: `/services/${c.slug}` },
     openGraph: {
@@ -49,6 +49,11 @@ export async function generateMetadata({
       description: c.metaDescription,
       url: `/services/${c.slug}`,
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: c.metaTitle,
+      description: c.metaDescription,
     },
   };
 }

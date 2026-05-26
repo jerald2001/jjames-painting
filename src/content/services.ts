@@ -59,13 +59,11 @@ export type ServiceContent = {
   agentBridge?: {
     heading: string;
     body: string;
-    quote?: { body: string; attribution: string };
   };
   /** Colour swatch grid. Pre-Sale ships; others skip or replace. */
   palette?: {
     eyebrow: string;
     heading: string;
-    leadMagnet: { label: string; href: string };
     swatches: Array<{ brand: string; name: string; hex: string; note: string }>;
   };
   /** 3 project example cards. */
@@ -78,7 +76,6 @@ export type ServiceContent = {
   faq: Array<{ q: string; a: string }>;
   related: {
     services: Array<{ slug: PriorityServiceSlug; anchor: string }>;
-    blog: Array<{ slug: string; title: string }>;
   };
   finalCTA: {
     heading: string;
@@ -91,9 +88,9 @@ export type ServiceContent = {
 const PRE_SALE: ServiceContent = {
   slug: "house-pre-sale-painting",
   primaryKeyword: "pre-sale house painter Sunshine Coast",
-  metaTitle: "Pre-Sale House Painting Sunshine Coast | Painted Ready for Market",
+  metaTitle: "Pre-Sale House Painting Sunshine Coast | J. James Painting",
   metaDescription:
-    "Fast-turn pre-sale painting for Sunshine Coast vendors. Neutral palettes, agent coordination, photo-ready in days. Family-run since 1985.",
+    "Fast-turn pre-sale painting for Sunshine Coast vendors and their agents. Neutral palettes, agent coordination, photo-ready in days. Family-run since 1985.",
   hero: {
     eyebrow: "House pre-sale painting",
     headline: "Painted to sell.\nReady for inspection\nin days, not weeks.",
@@ -168,18 +165,10 @@ const PRE_SALE: ServiceContent = {
   agentBridge: {
     heading: "For real estate agents and property managers.",
     body: "Vendor-paid or agency-arranged invoicing. Before and after photo packs for your owner reports. Direct PM coordination when the property&rsquo;s tenanted.",
-    quote: {
-      body: "Jamie&rsquo;s team painted three of our vendor listings this quarter. Each one was ready for photo day on time.",
-      attribution: "Real estate partner, Noosa",
-    },
   },
   palette: {
     eyebrow: "Agent-recommended palettes",
     heading: "Neutrals that photograph well.",
-    leadMagnet: {
-      label: "Download our pre-sale colour guide",
-      href: "/lead-magnet/pre-sale-colour-guide",
-    },
     swatches: [
       {
         brand: "Dulux",
@@ -264,16 +253,6 @@ const PRE_SALE: ServiceContent = {
         anchor: "For investor-vendors selling a rented property",
       },
     ],
-    blog: [
-      {
-        slug: "best-neutral-paint-colours-selling-sunshine-coast-home",
-        title: "Best neutral paint colours for selling a Sunshine Coast home",
-      },
-      {
-        slug: "pre-sale-paint-refresh-checklist-real-estate-agents",
-        title: "The pre-sale paint refresh checklist for real estate agents",
-      },
-    ],
   },
   finalCTA: {
     heading: "Get a pre-sale quote.",
@@ -286,9 +265,9 @@ const PRE_SALE: ServiceContent = {
 const RENTAL: ServiceContent = {
   slug: "rental-property-repaint",
   primaryKeyword: "rental property painter Sunshine Coast",
-  metaTitle: "Rental Property Repaint Sunshine Coast | Between-Tenancy Painters",
+  metaTitle: "Rental Property Repaint Sunshine Coast | J. James Painting",
   metaDescription:
-    "Fast between-tenancy rental repaints across the Sunshine Coast. Durable finishes, PM coordination, multi-property packages. Family-run since 1985.",
+    "Fast between-tenancy rental repaints across the Sunshine Coast. Durable neutral finishes, PM coordination, multi-property packages. Family-run since 1985.",
   hero: {
     eyebrow: "Rental property repaint",
     headline: "Repaint between tenants.\nRe-let faster.",
@@ -356,10 +335,6 @@ const RENTAL: ServiceContent = {
   agentBridge: {
     heading: "For property managers and agencies.",
     body: "Multi-property scheduling, direct PM coordination, key collection and handover, before and after photo packs for every property. The painter PMs recommend without checking first.",
-    quote: {
-      body: "We use J. James for the rentals we don&rsquo;t want to think about twice.",
-      attribution: "Property manager, Buderim",
-    },
   },
   projects: [
     {
@@ -414,16 +389,6 @@ const RENTAL: ServiceContent = {
         anchor: "For premium short-stay or executive-rental properties",
       },
     ],
-    blog: [
-      {
-        slug: "cost-to-repaint-rental-sunshine-coast",
-        title: "How much does it cost to repaint a rental between tenants on the Sunshine Coast?",
-      },
-      {
-        slug: "working-with-property-managers-coordinating-tenant-turnover-paint",
-        title: "Working with property managers — coordinating tenant-turnover paint",
-      },
-    ],
   },
   finalCTA: {
     heading: "Get a rental repaint quote.",
@@ -436,7 +401,7 @@ const RENTAL: ServiceContent = {
 const NEW_HOME: ServiceContent = {
   slug: "new-home-purchase-painting",
   primaryKeyword: "new home painter Sunshine Coast",
-  metaTitle: "New Home Painting Sunshine Coast | Paint Before You Move In",
+  metaTitle: "New Home Painters Sunshine Coast | J. James Painting",
   metaDescription:
     "Repaint your new Sunshine Coast home before you move in. Empty-house painting, colour consultation, settlement-to-keys scheduling. Family-run since 1985.",
   hero: {
@@ -556,16 +521,6 @@ const NEW_HOME: ServiceContent = {
         anchor: "For buyers planning to sell again within a few years",
       },
     ],
-    blog: [
-      {
-        slug: "paint-before-or-after-you-move-in",
-        title: "Should you paint before or after you move in?",
-      },
-      {
-        slug: "colour-consultation-first-home-buyers",
-        title: "Colour consultation for first-home buyers",
-      },
-    ],
   },
   finalCTA: {
     heading: "Get a new-home quote.",
@@ -578,9 +533,9 @@ const NEW_HOME: ServiceContent = {
 const BOUTIQUE: ServiceContent = {
   slug: "boutique-house-painting",
   primaryKeyword: "boutique house painter Sunshine Coast",
-  metaTitle: "Boutique House Painters Sunshine Coast | Heritage, Coastal, Architectural",
+  metaTitle: "Boutique House Painters Sunshine Coast | J. James Painting",
   metaDescription:
-    "Boutique residential painting across Noosa, Sunshine Beach, Maleny and the Sunshine Coast. Heritage Queenslanders, architectural new builds, coastal premium. Family-run since 1985.",
+    "Boutique residential painting across Noosa, Sunshine Beach, Maleny and the Coast. Heritage Queenslanders, architectural builds, coastal homes since 1985.",
   hero: {
     eyebrow: "Boutique house painting",
     headline: "Painting for homes\nthat deserve more\nthan a quick coat.",
@@ -615,8 +570,8 @@ const BOUTIQUE: ServiceContent = {
       },
       {
         n: "03",
-        title: "Meticulous prep.",
-        body: "Surface diagnosis, repairs, sanding, sealing, undercoating. Most of the time on a boutique job is here.",
+        title: "Prep that takes as long as the painting.",
+        body: "Surface diagnosis, repairs, sanding, sealing, undercoating. Most of the time on a boutique job is here, not on the topcoat.",
         treatment: "exterior",
       },
       {
@@ -684,16 +639,6 @@ const BOUTIQUE: ServiceContent = {
       {
         slug: "new-home-purchase-painting",
         anchor: "For buyers moving into a premium home",
-      },
-    ],
-    blog: [
-      {
-        slug: "heritage-queenslander-repaints-whats-different",
-        title: "Heritage Queenslander repaints — what&rsquo;s different",
-      },
-      {
-        slug: "exterior-paint-coastal-conditions-sunshine-coast",
-        title: "Choosing exterior paint for Sunshine Coast coastal conditions",
       },
     ],
   },

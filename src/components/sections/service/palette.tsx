@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Eyebrow } from "@/components/content/eyebrow";
@@ -46,16 +44,6 @@ export function ServicePalette({
             </li>
           ))}
         </ul>
-
-        <div className="mt-10">
-          <Link
-            href={data.leadMagnet.href}
-            className="inline-flex items-center gap-2 text-sm font-medium text-navy hover:text-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
-          >
-            {data.leadMagnet.label}
-            <ArrowUpRight size={16} aria-hidden="true" />
-          </Link>
-        </div>
       </Container>
     </Section>
   );
