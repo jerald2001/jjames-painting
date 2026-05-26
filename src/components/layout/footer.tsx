@@ -137,7 +137,7 @@ export function Footer() {
                 Instagram
               </a>
             )}
-            <span className="text-[10px] uppercase tracking-[0.18em] text-cream/40">
+            <span className="text-[10px] uppercase tracking-[0.18em] text-cream/70">
               Dulux + Taubmans accredited
             </span>
           </div>

@@ -14,7 +14,6 @@ export function Header() {
       <div className="relative mx-auto flex max-w-[1280px] items-center justify-between gap-3 px-4 py-3 md:gap-6 md:px-8 md:py-5">
         <Link
           href="/"
-          aria-label="J. James Painting Contractors home"
           className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green"
         >
           <Wordmark size="md" className="max-sm:[&_>span:first-child]:text-xl" />
@@ -44,10 +43,12 @@ export function Header() {
         <div className="flex items-center gap-1.5 lg:hidden">
           <a
             href={`tel:${BUSINESS.phoneE164}`}
-            aria-label={`Call ${BUSINESS.name} on ${BUSINESS.phone}`}
             className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-navy/15 bg-cream-cool text-navy transition-colors hover:border-navy/30 hover:bg-cream-warm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green active:bg-cream-warm/80"
           >
             <Phone size={16} aria-hidden="true" />
+            <span className="sr-only">
+              Call {BUSINESS.name} on {BUSINESS.phone}
+            </span>
           </a>
           <QuoteCTA size="md" className="h-10 px-3 text-sm">
             Quote
