@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL, PRIORITY_SERVICES } from "@/lib/brand";
 import { PROJECTS } from "@/content/projects";
+import { SUBURB_HUB_LIST } from "@/content/suburbs";
 
 /**
  * Sitemap is intentionally limited to routes that resolve today.
@@ -53,5 +54,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [home, about, contact, ...services, projectsIndex, ...projects];
+  const locationsIndex: MetadataRoute.Sitemap[number] = {
+    url: `${SITE_URL}/locations`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  };
+
+  const locations: MetadataRoute.Sitemap = SUBURB_HUB_LIST.map((h) => ({
+    url: `${SITE_URL}/locations/${h.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [
+    home,
+    about,
+    contact,
+    ...services,
+    projectsIndex,
+    ...projects,
+    locationsIndex,
+    ...locations,
+  ];
 }
