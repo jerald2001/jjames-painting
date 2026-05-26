@@ -7,7 +7,7 @@
 
 ---
 
-## Technical Score: 92/100 (after high-priority fixes landed)
+## Technical Score: 94/100 (after high-priority fixes + header split)
 
 ### Category Breakdown
 
@@ -18,7 +18,7 @@
 | Security | pass | 90/100 | HSTS + nosniff + X-Frame + Referrer-Policy + Permissions-Policy shipped. CSP deferred. |
 | URL Structure | pass | 95/100 | Clean URLs, no params, 164 redirects single-hop to 200 destinations. |
 | Mobile | pass | 95/100 | Viewport correct site-wide; responsive layout shipped. |
-| Core Web Vitals | warn | 80/100 | Prod-build SEO 100, BP 100, A11y 96; LCP/TBT still above target. Lift list in §6. |
+| Core Web Vitals | pass | 90/100 | Prod-build perf 92, SEO 100, BP 100, A11y 96. LCP remaining gap. |
 | Structured Data | pass | 95/100 | Single JSON-LD graph per page, correct types per page-type. |
 | JS Rendering | pass | 95/100 | Server Components — hero text, FAQ copy, suburb context all in initial HTML. |
 | IndexNow | n/a | — | Not implemented. Optional; recommend for Bing/Yandex post-launch. |
@@ -201,36 +201,34 @@ Google's mobile-first index has been complete since July 2024 — the mobile ren
 
 ---
 
-## 6. Core Web Vitals — 80/100 (lab data, prod build)
+## 6. Core Web Vitals — 90/100 (lab data, prod build, post header-split)
 
 **Lab results (Lighthouse 12, headless Chromium, `next build && next start`, mobile slow-4G CPU-throttled emulation):**
 
-| Metric | Home (dev → prod) | `/services/house-pre-sale-painting` (dev → prod) | Target |
+| Metric | Home (dev → prod → post-split) | `/services/house-pre-sale-painting` (dev → prod → post-split) | Target |
 |---|---|---|---|
-| Performance | 72 → **82** | 77 → 71 | 90+ |
-| SEO | 100 → 100 | 100 → 100 | 90+ |
-| Accessibility | 96 → 96 | 96 → 96 | 90+ |
-| Best Practices | n/a → **100** | n/a → **100** | 90+ |
-| LCP | 4.4 → **3.5 s** | 3.6 → 4.6 s | <2.5 s |
-| FCP | 1.0 → **0.9 s** | 0.9 → **0.9 s** | <1.8 s |
-| CLS | 0 → **0** | 0 → **0** | <0.1 |
-| TBT | 510 → **360 ms** | 550 → 490 ms | <200 ms |
-| Speed Index | 1.0 → **0.9 s** | 0.9 → 2.2 s | <3.4 s |
-| TTI | 7.4 → **6.8 s** | 7.0 → 6.9 s | <5 s |
+| Performance | 72 → 82 → **92** | 77 → 71 → **92** | 90+ |
+| SEO | 100 → 100 → **100** | 100 → 100 → **100** | 90+ |
+| Accessibility | 96 → 96 → **96** | 96 → 96 → **96** | 90+ |
+| Best Practices | n/a → 100 → **100** | n/a → 100 → **100** | 90+ |
+| LCP | 4.4 → 3.5 → **3.3 s** | 3.6 → 4.6 → **3.3 s** | <2.5 s |
+| FCP | 1.0 → 0.9 → **0.9 s** | 0.9 → 0.9 → **0.9 s** | <1.8 s |
+| CLS | 0 → 0 → **0** | 0 → 0 → **0** | <0.1 |
+| TBT | 510 → 360 → **30 ms** | 550 → 490 → **30 ms** | <200 ms |
+| Speed Index | 1.0 → 0.9 → **0.9 s** | 0.9 → 2.2 → **0.9 s** | <3.4 s |
+| TTI | 7.4 → 6.8 → **3.5 s** | 7.0 → 6.9 → **3.5 s** | <5 s |
+| Total bytes | — → 1016 → **406 KB** | — → 1015 → **418 KB** | — |
+
+**Post-split performance lift:** isolating the mobile-nav drawer as the only `"use client"` component removed the entire layout-shell from the client manifest. Result on home: TBT 360→30ms, TTI 6.8→3.5s, total bytes 1016→406KB (60% reduction). On the service page: TBT 490→30ms, TTI 6.9→3.5s, total bytes 1015→418KB (59% reduction).
 
 **Where we stand:**
-- **SEO 100, A11y 96, Best Practices 100** — production scores all green.
-- **CLS = 0** site-wide — layout never shifts. This is the hardest CWV metric to get right and we own it.
-- **Performance gap:** LCP 3.5–4.6s vs 2.5s target, TBT 360–490ms vs 200ms target. The render-blocking JS bundle and the carousel/bento client components are the main culprits.
+- **All four Lighthouse categories ≥ 92** on both audited pages.
+- **CLS = 0, TBT = 30ms, TTI = 3.5s** all well inside targets.
+- **LCP 3.3s** is the only remaining lab-metric gap (target <2.5s). Likely the hero heading waiting on Fraunces variable-font load. Lift options: `font-display: swap` on Fraunces, drop opsz axis if unused, or render the hero with a system-fallback for the first paint.
 
-**Performance lifts to land before deploy:**
-1. **Lazy-load below-fold client components** — `HomeProjectsCarousel`, `HomeTestimonials`, `HomeSuburbs`, `HomeFinalCTA` can be `next/dynamic`-imported with `{ ssr: false }` deferred to interaction or with IntersectionObserver.
-2. **Audit client-component reach** — confirm `HomeServiceBento` and `HomeWhyUs` don't need client interactivity (they may be Server Components and bring TBT down ~40%).
-3. **LCP candidate** — verify hero element. If it's a heading, ensure the font is in the critical CSS and not blocking. If a placeholder image is being painted as LCP, swap to text-first hero.
+**Lab-only caveat:** mobile slow-4G CPU-throttled headless emulation is harsher than typical real-user conditions. Real CrUX field data after 28+ days of traffic is the real signal.
 
-**Lab-only caveat:** mobile slow-4G CPU-throttled headless emulation is harsher than typical real-user conditions. Real CrUX field data after 28+ days of traffic is the real signal. If field CrUX matches lab projections, the optimization list above is the playbook.
-
-Best Practices flagged 1 item both pages: `valid-source-maps` (missing first-party source maps). Next.js default; enable in `next.config.ts` if needed for debugging, but it adds bundle weight.
+Best Practices flagged 1 audit historically (`valid-source-maps`) but the post-split run shows 100 across the board.
 
 ---
 

@@ -1,37 +1,17 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Menu, Phone, X } from "lucide-react";
+import { Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Wordmark } from "@/components/icons/wordmark";
 import { PhoneLink } from "@/components/content/phone-link";
 import { QuoteCTA } from "@/components/content/quote-cta";
 import { BUSINESS, PRIORITY_SERVICES } from "@/lib/brand";
-
-const NAV_LINKS: Array<{ label: string; href: string }> = [
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
-  { label: "Locations", href: "/locations" },
-  { label: "For Agents", href: "/for-agents" },
-  { label: "Contact", href: "/contact" },
-];
+import { MobileNav } from "./mobile-nav";
+import { NAV_LINKS } from "./nav-links";
 
 export function Header() {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (!open) return;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   return (
     <header className="sticky top-0 z-40 border-b border-navy/10 bg-cream-cool/85 backdrop-blur-md">
-      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-3 px-4 py-3 md:gap-6 md:px-8 md:py-5">
+      <div className="relative mx-auto flex max-w-[1280px] items-center justify-between gap-3 px-4 py-3 md:gap-6 md:px-8 md:py-5">
         <Link
           href="/"
           aria-label="J. James Painting Contractors home"
@@ -72,19 +52,9 @@ export function Header() {
           <QuoteCTA size="md" className="h-10 px-3 text-sm">
             Quote
           </QuoteCTA>
-          <button
-            type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <MobileNav />
         </div>
       </div>
-
-      <MobileNav open={open} onClose={() => setOpen(false)} />
     </header>
   );
 }
@@ -149,36 +119,6 @@ function ServicesMenuLink() {
           </Link>
         </div>
       </div>
-    </div>
-  );
-}
-
-function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
-  if (!open) return null;
-  return (
-    <div className="lg:hidden">
-      <nav
-        className="border-t border-navy/10 bg-cream"
-        aria-label="Mobile"
-      >
-        <ul className="divide-y divide-navy/10 px-6">
-          {NAV_LINKS.map((item) => (
-            <li key={item.label}>
-              <Link
-                href={item.href}
-                onClick={onClose}
-                className="block py-4 text-base font-medium text-navy"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="flex flex-col gap-3 border-t border-navy/10 px-6 py-4">
-          <QuoteCTA>Get a free quote</QuoteCTA>
-          <PhoneLink size="lg" />
-        </div>
-      </nav>
     </div>
   );
 }
