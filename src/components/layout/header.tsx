@@ -1,0 +1,184 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Menu, Phone, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Wordmark } from "@/components/icons/wordmark";
+import { PhoneLink } from "@/components/content/phone-link";
+import { QuoteCTA } from "@/components/content/quote-cta";
+import { BUSINESS, PRIORITY_SERVICES } from "@/lib/brand";
+
+const NAV_LINKS: Array<{ label: string; href: string }> = [
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "Locations", href: "/locations" },
+  { label: "For Agents", href: "/for-agents" },
+  { label: "Contact", href: "/contact" },
+];
+
+export function Header() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  return (
+    <header className="sticky top-0 z-40 border-b border-navy/10 bg-cream-cool/85 backdrop-blur-md">
+      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-3 px-4 py-3 md:gap-6 md:px-8 md:py-5">
+        <Link
+          href="/"
+          aria-label="J. James Painting Contractors home"
+          className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green"
+        >
+          <Wordmark size="md" className="max-sm:[&_>span:first-child]:text-xl" />
+        </Link>
+
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+          {NAV_LINKS.map((item) =>
+            item.label === "Services" ? (
+              <ServicesMenuLink key={item.label} />
+            ) : (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="rounded-sm px-3 py-2 text-sm font-medium text-navy transition-colors hover:text-navy-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
+        </nav>
+
+        <div className="hidden items-center gap-3 lg:flex">
+          <PhoneLink variant="ghost" size="md" />
+          <QuoteCTA size="md">Get a quote</QuoteCTA>
+        </div>
+
+        <div className="flex items-center gap-1.5 lg:hidden">
+          <a
+            href={`tel:${BUSINESS.phoneE164}`}
+            aria-label={`Call ${BUSINESS.name} on ${BUSINESS.phone}`}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-navy/15 bg-cream-cool text-navy transition-colors hover:border-navy/30 hover:bg-cream-warm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green active:bg-cream-warm/80"
+          >
+            <Phone size={16} aria-hidden="true" />
+          </a>
+          <QuoteCTA size="md" className="h-10 px-3 text-sm">
+            Quote
+          </QuoteCTA>
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+      </div>
+
+      <MobileNav open={open} onClose={() => setOpen(false)} />
+    </header>
+  );
+}
+
+function ServicesMenuLink() {
+  return (
+    <div className="group relative">
+      <Link
+        href="/services"
+        className="inline-flex items-center gap-1 rounded-sm px-3 py-2 text-sm font-medium text-navy transition-colors hover:text-navy-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
+      >
+        Services
+        <svg
+          aria-hidden="true"
+          width={12}
+          height={12}
+          viewBox="0 0 12 12"
+          className="transition-transform group-hover:rotate-180"
+        >
+          <path
+            d="M2 4 L6 8 L10 4"
+            stroke="currentColor"
+            strokeWidth={1.5}
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </Link>
+
+      <div
+        className={cn(
+          "pointer-events-none invisible absolute left-1/2 top-full mt-2 w-[440px] -translate-x-1/2 rounded-md border border-navy/10 bg-cream-cool p-5 opacity-0 shadow-[0_24px_48px_-24px_rgb(20_34_92/0.25)] transition-all",
+          "group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100",
+          "focus-within:pointer-events-auto focus-within:visible focus-within:opacity-100",
+        )}
+      >
+        <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-ink-muted">
+          Priority services
+        </p>
+        <ul className="space-y-1">
+          {PRIORITY_SERVICES.map((s) => (
+            <li key={s.slug}>
+              <Link
+                href={`/services/${s.slug}`}
+                className="block rounded-sm border-l-2 border-transparent px-3 py-2 text-sm text-navy transition-colors hover:border-green hover:bg-cream-warm focus-visible:border-green focus-visible:bg-cream-warm focus-visible:outline-none"
+              >
+                <span className="font-medium">{s.title}</span>
+                <span className="mt-0.5 block text-xs text-ink-muted">
+                  {s.oneLiner}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-4 border-t border-navy/10 pt-3">
+          <Link
+            href="/services"
+            className="text-xs font-medium uppercase tracking-[0.18em] text-navy hover:text-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
+          >
+            All services →
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null;
+  return (
+    <div className="lg:hidden">
+      <nav
+        className="border-t border-navy/10 bg-cream"
+        aria-label="Mobile"
+      >
+        <ul className="divide-y divide-navy/10 px-6">
+          {NAV_LINKS.map((item) => (
+            <li key={item.label}>
+              <Link
+                href={item.href}
+                onClick={onClose}
+                className="block py-4 text-base font-medium text-navy"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="flex flex-col gap-3 border-t border-navy/10 px-6 py-4">
+          <QuoteCTA>Get a free quote</QuoteCTA>
+          <PhoneLink size="lg" />
+        </div>
+      </nav>
+    </div>
+  );
+}

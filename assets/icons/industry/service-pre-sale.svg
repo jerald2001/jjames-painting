@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="House pre-sale painting">
+  <title>House pre-sale painting</title>
+  <!-- Pitched-roof house outline -->
+  <g stroke="#13225C" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 12 32 L 32 16 L 52 32 L 52 52 L 12 52 Z" />
+    <line x1="12" y1="32" x2="52" y2="32" />
+  </g>
+  <!-- Door -->
+  <rect x="28" y="40" width="8" height="12" fill="#13225C" rx="1" />
+  <!-- Pre-sale price/listing tag suspended from the roof corner -->
+  <g stroke="#13225C" stroke-width="2.5" fill="#5DBE2E" stroke-linejoin="round">
+    <path d="M 44 16 L 56 16 L 60 20 L 56 24 L 44 24 Z" />
+  </g>
+  <circle cx="46" cy="20" r="1.5" fill="#13225C" />
+  <!-- Sky-blue tag string back to the house -->
+  <line x1="44" y1="20" x2="40" y2="20" stroke="#6FB6E8" stroke-width="2" stroke-linecap="round" />
+</svg>

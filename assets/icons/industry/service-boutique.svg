@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Boutique house painting">
+  <title>Boutique house painting</title>
+  <!-- Brush handle, vertical, navy with rounded ends -->
+  <rect x="29" y="10" width="6" height="26" rx="2" fill="#13225C" />
+  <!-- Ferrule (metal band between handle and bristles) -->
+  <rect x="26" y="34" width="12" height="5" rx="1" fill="#13225C" />
+  <!-- Inner ferrule highlight -->
+  <line x1="27" y1="36.5" x2="37" y2="36.5" stroke="#2C3E80" stroke-width="1" />
+  <!-- Bristles: green paint, slightly fanned -->
+  <path d="M 27 39 Q 25 46, 27 54 L 37 54 Q 39 46, 37 39 Z" fill="#5DBE2E" />
+  <!-- Bristle detail strokes -->
+  <line x1="30" y1="40" x2="29" y2="52" stroke="#13225C" stroke-width="1" opacity="0.35" stroke-linecap="round" />
+  <line x1="34" y1="40" x2="35" y2="52" stroke="#13225C" stroke-width="1" opacity="0.35" stroke-linecap="round" />
+  <!-- Decorative diamond accent on the handle top, suggesting 'premium/boutique' craftsmanship -->
+  <path d="M 32 5 L 36 9 L 32 13 L 28 9 Z" fill="none" stroke="#13225C" stroke-width="2" stroke-linejoin="round" />
+  <!-- Small sky-blue fine-detail stroke arcing off the brush tip -->
+  <path d="M 40 52 Q 50 50, 56 44" stroke="#6FB6E8" stroke-width="2.5" fill="none" stroke-linecap="round" />
+  <circle cx="56" cy="44" r="1.6" fill="#6FB6E8" />
+</svg>

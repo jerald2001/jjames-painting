@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Rental property repaint">
+  <title>Rental property repaint</title>
+  <!-- Key silhouette: ring + shaft + teeth -->
+  <g stroke="#13225C" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="22" cy="36" r="9" />
+    <line x1="30" y1="34" x2="52" y2="34" />
+    <line x1="46" y1="34" x2="46" y2="40" />
+    <line x1="40" y1="34" x2="40" y2="38" />
+  </g>
+  <!-- Inner navy fill on the ring opening -->
+  <circle cx="22" cy="36" r="4" fill="#13225C" />
+  <!-- Green paint drip arcing above the key bow, signalling 'fresh repaint' -->
+  <path d="M 22 14 Q 26 18, 22 24" stroke="#5DBE2E" stroke-width="3.5" fill="none" stroke-linecap="round" />
+  <circle cx="22" cy="25.5" r="2.4" fill="#5DBE2E" />
+</svg>

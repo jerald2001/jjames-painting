@@ -1,4 +1,5 @@
-# CLAUDE.md — Local Business Website Template
+# CLAUDE.md — Local Business Website Rebuild
+This is a project to rebuild an existing website of a local business. The goal of this project is to have clean UI, better website architecture, improved SEO and overall better conversions.
 
 ## Always Do First
 
@@ -36,8 +37,6 @@ Stitch is the architect's sketch. You are the builder. Stitch output is never sh
 
 All client intel lives in `client-brief/`. See `client-brief/README.md` for processing instructions.
 
-**Priority:** read `client-brief.md` first (primary source of truth), then everything else as supplementary context.
-
 If anything is ambiguous or missing, ask. Do not guess.
 
 ## Brand Assets
@@ -45,9 +44,7 @@ If anything is ambiguous or missing, ask. Do not guess.
 Everything lives in `assets/branding/` as a flat dump. Claude reads everything in there and figures out what's what.
 
 - If a logo is present, use it. Extract primary/secondary colors from the logo if no palette is provided.
-- If a color palette is defined, use those exact values. Do not invent brand colors.
-- If reference materials exist (flyers, screenshots, existing collateral), use them.
-- Never use placeholders where real assets are available.
+- If a color palette is defined, use those exact values. However, check during brainstorming if I want to consider new color palletes.
 
 ### Icons
 
@@ -57,30 +54,21 @@ Everything lives in `assets/branding/` as a flat dump. Claude reads everything i
 
 ## Copywriting
 
-All copy rules live in `copywriting/README.md`. Read it before writing any user-facing text.
+All copy rules live in `copywriting/anti-slop-kill-list.md`. Read it before writing any user-facing text.
 
-**Quick reference:**
-- Brand voice: friendly professional, casual, confident, direct. No swearing.
-- Every piece of copy is checked against `copywriting/anti-slop-kill-list.md`. If a banned word or pattern appears, the copy fails.
-- No em-dashes. No emojis. Use contractions. Vary sentence length.
-- Reading level: 5th-6th grade.
-- Run the three-line sanity check on every page before shipping.
+## Image & Visual Showcase Strategy
+
+- Every content-heavy page MUST break up text with images displayed in unique, attention-grabbing layouts. This is mandatory, not optional. If a page has more than two consecutive text-only sections, it fails review.
+- All acceptable image layouts live in [`docs/accepted-image.md`](docs/accepted-image.md).
 
 ## Design System
 
-Colors and typography are derived per-client from their branding. Nothing is hardcoded here.
+- Refer to the docs in `client-brief/` if there is any design preferred by the client.
+- Always use visual companion to show the direction of the design before doing any code.
 
 ### Anti-Generic Guardrails
 
-- **Colors:** Never use default Tailwind palette (indigo-500, blue-600, etc.). Derive from the client's brand.
-- **Shadows:** Never use flat `shadow-md`. Use layered, color-tinted shadows with low opacity.
-- **Typography:** Different fonts for headings and body. Tight tracking (`-0.03em`) on large headings, generous line-height (`1.7`) on body.
-- **Gradients:** Layer multiple radial gradients. Add grain/texture via SVG noise filter for depth when appropriate.
-- **Spacing:** Use intentional, consistent spacing tokens. Not random Tailwind steps.
-- **Depth:** Surfaces should have a layering system (base, elevated, floating), not all sit at the same z-plane.
-- **Interactive states:** Every clickable element needs hover, focus-visible, and active states. No exceptions.
-- **Animations:** Only animate `transform` and `opacity`. Never `transition-all`. Use spring-style easing.
-- **Images:** Add a gradient overlay and a color treatment layer with `mix-blend-multiply` where appropriate.
+Read through [`docs/anti-generic-guardrails.md`](docs/anti-generic-guardrails.md).
 
 ## Build Phases
 
@@ -119,81 +107,9 @@ Applied in Phase 5, but keep these principles throughout the build:
 
 ## SEO Workflow
 
-This template uses the `claude-seo` skill suite. These are local business websites — local SEO is the priority.
+- **Process:** [`docs/seo/seo-workflow.md`](docs/seo/seo-workflow.md) — skill invocation by phase, local SEO priorities, on-page checklist.
+- **Google guidelines:** [`docs/seo/google-search-guidelines-summary.md`](docs/seo/google-search-guidelines-summary.md) — official Google Search docs summary. Consult throughout every build phase.
 
-### Skill Invocation by Phase
-
-| Phase | Skills to Invoke | Purpose |
-|---|---|---|
-| 1. Discovery | `claude-seo:seo-plan` | Keyword strategy, content architecture, page hierarchy |
-| 1. Discovery | `claude-seo:seo-local` | GBP optimization checklist, NAP format, citation targets |
-| 1. Discovery | `claude-seo:seo-cluster` | Topic clustering for service pages and blog content |
-| 3. Build | `claude-seo:seo-schema` | LocalBusiness, Service, FAQPage, BreadcrumbList markup |
-| 3. Build | `claude-seo:seo-sitemap` | Generate XML sitemap with proper priority/changefreq |
-| 4. Content | `claude-seo:seo-content` | E-E-A-T scoring, readability, thin content detection |
-| 4. Content | `claude-seo:seo-geo` | Optimize for AI Overviews, citation-readiness |
-| 4. Content | `claude-seo:seo-images` | Alt text, sizing, lazy loading, CLS prevention |
-| 5. SEO & Polish | `claude-seo:seo-technical` | Crawlability, indexability, Core Web Vitals, security headers |
-| 5. SEO & Polish | `claude-seo:seo-page` | Deep per-page audit (run on every page) |
-| 5. SEO & Polish | `claude-seo:seo-maps` | Geo-grid analysis, competitor radius, review signals |
-| 6. Deploy | `claude-seo:seo-drift` | Capture baseline so future changes can be diffed |
-| 6. Deploy | `claude-seo:seo-google` | PageSpeed Insights, CrUX field data verification |
-
-### Local Business SEO Priorities
-
-These are non-negotiable for every local business site:
-
-1. **LocalBusiness schema** on every page (invoke `claude-seo:seo-schema`). Include `@type`, `name`, `address`, `geo`, `telephone`, `openingHours`, `areaServed`.
-2. **NAP consistency** — Name, Address, Phone must be identical everywhere on the site and match the Google Business Profile exactly.
-3. **Service area pages** — one page per core service, one page per location served (if multi-location). Each gets unique copy, unique schema, and a unique H1.
-4. **Google Maps embed** on the contact page. No competing CTAs near it.
-5. **Reviews/testimonials** with structured data (`Review` or `AggregateRating` schema).
-6. **Local keyword targeting** — "{service} in {city}" patterns in title tags, H1s, meta descriptions. Derive from `claude-seo:seo-plan` output.
-7. **Image geo-tagging** — where possible, include location in image alt text and filenames.
-
-### On-Page SEO Checklist (Every Page)
-
-Run this before marking any page as done:
-
-- [ ] Unique `<title>` tag (50-60 chars, includes primary keyword + location)
-- [ ] Unique `<meta name="description">` (150-160 chars, includes CTA + location)
-- [ ] Single `<h1>` per page with primary keyword
-- [ ] Logical heading hierarchy (H1 > H2 > H3, no skips)
-- [ ] Internal links to related service/location pages
-- [ ] Schema markup validated (no errors in Google Rich Results Test)
-- [ ] Open Graph and Twitter Card meta tags
-- [ ] Canonical URL set
-- [ ] Images optimized (alt text, WebP/AVIF, proper sizing)
-- [ ] Mobile rendering verified via Playwright screenshot
-
-### SEO Assets to Generate
-
-Use `claude-seo:seo-image-gen` for:
-- Open Graph images (1200x630) for each page
-- Twitter Card images
-- Schema `image` property assets
-
-Use `web-asset-generator` for favicons and app icons (already in Phase 1).
-
-### When to Run Full Audits
-
-- **Before launch:** Run `claude-seo:seo-technical` + `claude-seo:seo-page` on every page.
-- **After launch:** Run `claude-seo:seo-google` once Search Console data is available (48-72hrs).
-- **Ongoing:** Run `claude-seo:seo-drift` to detect regressions after any content or code changes.
-- **Competitor intel:** Run `claude-seo:seo-maps` and `claude-seo:seo-competitor-pages` if the client wants comparison or "alternatives" pages.
-
-### Optional Skills (Invoke When Relevant)
-
-| Skill | When to Use |
-|---|---|
-| `claude-seo:seo-backlinks` | Client has existing site with link profile to analyze |
-| `claude-seo:seo-hreflang` | Multi-language or multi-region site |
-| `claude-seo:seo-ecommerce` | Client sells products online |
-| `claude-seo:seo-programmatic` | Generating pages at scale (e.g., 50+ location pages) |
-| `claude-seo:seo-dataforseo` | Need live SERP data, keyword volumes, or competitor analysis |
-| `claude-seo:seo-sxo` | Page is well-optimized but not ranking — diagnose intent mismatch |
-| `claude-seo:seo-flow` | Want evidence-led SEO prompts using the FLOW framework |
-| `claude-seo:seo-audit` | Full-site audit with parallel subagent delegation (post-launch) |
 
 ## Hard Rules
 
@@ -215,3 +131,6 @@ Use `web-asset-generator` for favicons and app icons (already in Phase 1).
 - Run `claude-seo:seo-page` on every page before marking it complete
 - NAP must be consistent site-wide and match Google Business Profile
 - No orphan pages — every page must have at least one internal link pointing to it
+- No CTA banners without a background image or video — colored boxes with text are not CTAs
+- No pill-style badges or tags anywhere. No `rounded-full` labels above section headings. These are generic AI tells.
+- Every content-heavy page must use at least 2 different image layout patterns. No walls of text without visual breaks.
