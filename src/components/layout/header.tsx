@@ -95,11 +95,18 @@ function ServicesMenuLink() {
 
       <div
         className={cn(
-          "pointer-events-none invisible absolute left-1/2 top-full mt-2 w-[440px] -translate-x-1/2 rounded-md border border-navy/10 bg-cream-cool p-5 opacity-0 shadow-[0_24px_48px_-24px_rgb(20_34_92/0.25)] transition-all",
+          // top-full + mt-2 leaves an 8px margin gap between trigger and panel.
+          // That gap is unhoverable, so diagonal mouse travel drops group-hover
+          // and the menu closes. The hover-bridge <span> (first child) spans
+          // that gap, keeping it inside the group's hover area.
+          "pointer-events-none invisible absolute left-1/2 top-full mt-2 w-[440px] -translate-x-1/2 rounded-md border border-navy/10 bg-cream-cool p-5 opacity-0 shadow-[0_24px_48px_-24px_rgb(20_34_92/0.25)] transition-[opacity,visibility]",
           "group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100",
           "focus-within:pointer-events-auto focus-within:visible focus-within:opacity-100",
         )}
       >
+        {/* Invisible hover bridge across the 8px trigger-to-panel gap so
+            diagonal mouse travel doesn't drop group-hover and close the menu. */}
+        <span aria-hidden="true" className="absolute inset-x-0 -top-2 h-2" />
         <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-ink-muted">
           Priority services
         </p>
