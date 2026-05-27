@@ -2,6 +2,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Eyebrow } from "@/components/content/eyebrow";
 import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
+import { PROCESS_STEP_IMAGES } from "@/lib/photos";
 import type { ServiceContent } from "@/content/services";
 import { cn } from "@/lib/utils";
 
@@ -59,8 +60,10 @@ export function ServiceProcess({
                   )}
                 >
                   <PhotoPlaceholder
+                    src={PROCESS_STEP_IMAGES[step.n]}
                     alt={`${step.title} step`}
                     treatment={step.treatment}
+                    sizes="(min-width: 768px) 50vw, 100vw"
                   />
                 </div>
               </li>

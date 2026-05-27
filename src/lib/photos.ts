@@ -72,6 +72,19 @@ export const SUBURB_IMAGES: Record<string, string> = {
   aura: `${BASE}/jjamesdj11.jpg`,
 };
 
+/** Service process-step thumbnails, keyed by step number ("01".."05").
+ *  Tuned to the boutique 5-step flow (site visit / proposal / prep / finish /
+ *  walkthrough) and reused across all service pages: exteriors on the
+ *  outdoor/prep steps, a neutral foyer for the proposal, interiors for the
+ *  finish/walkthrough. Step 05 only renders on the boutique page. */
+export const PROCESS_STEP_IMAGES: Record<string, string> = {
+  "01": `${BASE}/jjamesdj1.jpg`,
+  "02": `${BASE}/jjamesdj2.jpg`,
+  "03": `${BASE}/jjamesdj4.jpg`,
+  "04": `${BASE}/jjamesdj5.jpg`,
+  "05": `${BASE}/jjamesdj7.jpg`,
+};
+
 /** Home hero — dusk character home matches the "late afternoon light" copy. */
 export const HOME_HERO_IMAGE = `${BASE}/jjamesdj13.jpg`;
 /** Home final-CTA background. */
