@@ -17,9 +17,12 @@ export const BUSINESS = {
   foundedYear: 1985,
   phone: "0403 571 616",
   phoneE164: "+61403571616",
-  email: "", // TBC from client (see docs/seo/local-seo.md open items)
-  abn: "", // TBC
-  qbccLicense: "", // TBC
+  // Scraped from jjamespaintingcontractorsqld.com.au (homepage footer + about page).
+  email: "jjamespainting@gmail.com",
+  abn: "", // TBC — not published on the legacy site
+  // QBCC company licence, scraped from the legacy site (home + about).
+  // Legacy site also lists an owner licence: 1149471.
+  qbccLicense: "1281728",
   region: "Sunshine Coast",
   state: "QLD",
   country: "AU",
@@ -32,8 +35,8 @@ export const BUSINESS = {
     { day: "Sat", open: "08:00", close: "13:00" },
   ],
   socials: {
-    facebook: "", // TBC
-    instagram: "", // TBC
+    facebook: "", // TBC — not linked from the legacy site (a FB page may exist; client to confirm URL)
+    instagram: "", // TBC — not linked from the legacy site
   },
   // Sunshine Coast region centroid placeholder. Replace with the address-derived
   // coordinates once the client confirms the address (per docs/seo/local-seo.md).
