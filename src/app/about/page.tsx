@@ -189,12 +189,29 @@ export default function AboutPage() {
           </div>
 
           <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:gap-14">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-md shadow-[0_24px_44px_-28px_rgb(20_34_92/0.4)]">
+            {/* TODO(photography-day): swap this project showcase for a real
+                portrait of Jamie once shoot-day headshots exist. No authentic
+                portrait is available yet, so we surface recent work (clearly
+                captioned as such) rather than ship a stock face. */}
+            <figure className="relative aspect-[4/5] overflow-hidden rounded-md shadow-[0_24px_44px_-28px_rgb(20_34_92/0.4)]">
               <PhotoPlaceholder
-                alt={`${JAMIE.name}, ${JAMIE.jobTitle} at J. James Painting Contractors`}
+                src="/photos/jjamesdj8.jpg"
+                alt="Recent boutique project by J. James Painting: a heritage Queenslander restoration in Maleny"
                 treatment="hinterland"
+                sizes="(min-width: 768px) 40vw, 100vw"
               />
-            </div>
+              <div
+                aria-hidden="true"
+                className="absolute inset-x-0 bottom-0 h-1/3"
+                style={{
+                  background:
+                    "linear-gradient(180deg, transparent, oklch(0.225 0.145 268 / 0.72))",
+                }}
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 p-4 text-xs font-medium uppercase tracking-[0.18em] text-cream/90">
+                Recent boutique project, Maleny
+              </figcaption>
+            </figure>
             <article>
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-ink-muted">
                 {JAMIE.jobTitle}
