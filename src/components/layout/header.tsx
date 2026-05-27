@@ -1,7 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Wordmark } from "@/components/icons/wordmark";
 import { PhoneLink } from "@/components/content/phone-link";
 import { QuoteCTA } from "@/components/content/quote-cta";
 import { BUSINESS, PRIORITY_SERVICES } from "@/lib/brand";
@@ -16,7 +16,14 @@ export function Header() {
           href="/"
           className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green"
         >
-          <Wordmark size="md" className="max-sm:[&_>span:first-child]:text-xl" />
+          <Image
+            src="/images/logo.webp"
+            alt="J. James Painting Contractors"
+            width={349}
+            height={109}
+            priority
+            className="h-9 w-auto md:h-10"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
