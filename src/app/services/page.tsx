@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Eyebrow } from "@/components/content/eyebrow";
 import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
+import { SERVICE_IMAGES } from "@/lib/photos";
 import { QuoteCTA } from "@/components/content/quote-cta";
 import { PhoneLink } from "@/components/content/phone-link";
 import { TrustRail } from "@/components/content/trust-rail";
@@ -127,8 +128,10 @@ export default function ServicesIndexPage() {
                   <article className="flex h-full w-full flex-col">
                     <div className="relative aspect-[16/9] overflow-hidden rounded-md">
                       <PhotoPlaceholder
+                        src={SERVICE_IMAGES[s.slug]}
                         alt={`${s.title} project example`}
                         treatment={PRIORITY_TREATMENT[s.slug] ?? "coastal"}
+                        sizes="(min-width: 768px) 50vw, 100vw"
                       />
                       <div
                         aria-hidden="true"

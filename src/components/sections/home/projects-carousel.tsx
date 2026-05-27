@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Eyebrow } from "@/components/content/eyebrow";
 import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
+import { PROJECT_IMAGES } from "@/lib/photos";
 
 type LaunchProject = {
   slug: string;
@@ -87,8 +88,10 @@ export function HomeProjectsCarousel() {
               >
                 <div className="relative aspect-[4/5] overflow-hidden rounded-md shadow-[0_24px_44px_-28px_rgb(20_34_92/0.45)]">
                   <PhotoPlaceholder
+                    src={PROJECT_IMAGES[p.slug]}
                     alt={`${p.scope} in ${p.suburb}`}
                     treatment={p.treatment}
+                    sizes="(min-width: 1024px) 380px, (min-width: 768px) 340px, 78vw"
                   />
                 </div>
                 <div className="mt-4 flex items-start justify-between gap-4">

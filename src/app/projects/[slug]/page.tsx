@@ -6,6 +6,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Eyebrow } from "@/components/content/eyebrow";
 import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
+import { PROJECT_IMAGES } from "@/lib/photos";
 import { QuoteCTA } from "@/components/content/quote-cta";
 import { PhoneLink } from "@/components/content/phone-link";
 import { TrustRail } from "@/components/content/trust-rail";
@@ -86,9 +87,11 @@ export default async function ProjectPage({
       >
         <div className="absolute inset-0 -z-10">
           <PhotoPlaceholder
+            src={PROJECT_IMAGES[project.slug]}
             alt={`${project.scope} project in ${project.suburb}`}
             treatment={project.treatment}
             priority
+            sizes="100vw"
           />
         </div>
         <div

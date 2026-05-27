@@ -2,6 +2,7 @@ import { Container } from "@/components/layout/container";
 import { QuoteCTA } from "@/components/content/quote-cta";
 import { PhoneLink } from "@/components/content/phone-link";
 import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
+import { SERVICE_IMAGES } from "@/lib/photos";
 import type { ServiceContent } from "@/content/services";
 
 export function ServiceFinalCTA({
@@ -18,8 +19,10 @@ export function ServiceFinalCTA({
     >
       <div className="absolute inset-0 -z-10">
         <PhotoPlaceholder
-          alt="Brushwork detail"
+          src={SERVICE_IMAGES[serviceSlug]}
+          alt="A recently painted Sunshine Coast home"
           treatment={data.photoTreatment}
+          sizes="100vw"
         />
       </div>
       <div

@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { QuoteCTA } from "@/components/content/quote-cta";
 import { PhoneLink } from "@/components/content/phone-link";
 import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
+import { HOME_CTA_IMAGE } from "@/lib/photos";
 
 export function HomeFinalCTA() {
   return (
@@ -12,8 +13,10 @@ export function HomeFinalCTA() {
     >
       <div className="absolute inset-0 -z-10">
         <PhotoPlaceholder
-          alt="Brushwork detail on a recently painted Sunshine Coast home"
+          src={HOME_CTA_IMAGE}
+          alt="A recently painted Sunshine Coast home"
           treatment="exterior"
+          sizes="100vw"
         />
       </div>
 

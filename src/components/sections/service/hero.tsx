@@ -2,6 +2,7 @@ import { Container } from "@/components/layout/container";
 import { QuoteCTA } from "@/components/content/quote-cta";
 import { PhoneLink } from "@/components/content/phone-link";
 import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
+import { SERVICE_IMAGES } from "@/lib/photos";
 import type { ServiceContent } from "@/content/services";
 
 type ServiceHeroProps = {
@@ -17,9 +18,11 @@ export function ServiceHero({ hero, serviceSlug }: ServiceHeroProps) {
     >
       <div className="absolute inset-0 -z-10">
         <PhotoPlaceholder
+          src={SERVICE_IMAGES[serviceSlug]}
           alt={`${hero.eyebrow} hero image`}
           treatment={hero.photoTreatment}
           priority
+          sizes="100vw"
         />
       </div>
       <div

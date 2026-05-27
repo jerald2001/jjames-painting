@@ -2,6 +2,7 @@ import { Container } from "@/components/layout/container";
 import { QuoteCTA } from "@/components/content/quote-cta";
 import { PhoneLink } from "@/components/content/phone-link";
 import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
+import { HOME_HERO_IMAGE } from "@/lib/photos";
 
 export function HomeHero() {
   return (
@@ -11,9 +12,11 @@ export function HomeHero() {
     >
       <div className="absolute inset-0 -z-10">
         <PhotoPlaceholder
-          alt="A recently repainted Sunshine Coast Queenslander in late afternoon light"
+          src={HOME_HERO_IMAGE}
+          alt="A recently repainted Sunshine Coast home in late afternoon light"
           treatment="coastal"
           priority
+          sizes="100vw"
         />
       </div>
 

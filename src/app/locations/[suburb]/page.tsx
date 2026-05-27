@@ -6,6 +6,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Eyebrow } from "@/components/content/eyebrow";
 import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
+import { PROJECT_IMAGES, SUBURB_IMAGES } from "@/lib/photos";
 import { QuoteCTA } from "@/components/content/quote-cta";
 import { PhoneLink } from "@/components/content/phone-link";
 import { TrustRail } from "@/components/content/trust-rail";
@@ -101,9 +102,11 @@ export default async function SuburbHubPage({
       >
         <div className="absolute inset-0 -z-10">
           <PhotoPlaceholder
+            src={SUBURB_IMAGES[hub.slug]}
             alt={`${hub.name} Sunshine Coast painting work`}
             treatment={hub.heroTreatment}
             priority
+            sizes="100vw"
           />
         </div>
         <div
@@ -239,8 +242,10 @@ export default async function SuburbHubPage({
                   >
                     <div className="relative aspect-[4/5] overflow-hidden rounded-md shadow-[0_24px_44px_-28px_rgb(20_34_92/0.45)]">
                       <PhotoPlaceholder
+                        src={PROJECT_IMAGES[p.slug]}
                         alt={`${p.scope} project in ${p.suburb}`}
                         treatment={p.treatment}
+                        sizes="(min-width: 768px) 33vw, 100vw"
                       />
                     </div>
                     <div className="mt-4 flex items-start justify-between gap-4">

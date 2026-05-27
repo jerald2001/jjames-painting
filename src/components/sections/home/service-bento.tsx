@@ -5,6 +5,7 @@ import { Section } from "@/components/layout/section";
 import { Eyebrow } from "@/components/content/eyebrow";
 import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
 import { PRIORITY_SERVICES } from "@/lib/brand";
+import { SERVICE_IMAGES } from "@/lib/photos";
 import { cn } from "@/lib/utils";
 
 /**
@@ -51,8 +52,10 @@ export function HomeServiceBento() {
             >
               <div className="absolute inset-0 -z-10">
                 <PhotoPlaceholder
+                  src={SERVICE_IMAGES[s.slug]}
                   alt={`${s.title} project example`}
                   treatment={TREATMENT[s.slug]}
+                  sizes="(min-width: 768px) 66vw, 100vw"
                 />
               </div>
 
