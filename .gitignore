@@ -48,3 +48,10 @@ next-env.d.ts
 *:Zone.Identifier
 *:Zone.Identifier:*
 *.Identifier
+
+# lighthouse chrome profile dirs (WSL writes the literal windows temp path)
+C:\\*
+lighthouse.*
+
+# scratch screenshots from local debugging
+/*.png
