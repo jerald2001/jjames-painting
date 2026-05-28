@@ -8,6 +8,7 @@ import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
 import { QuoteCTA } from "@/components/content/quote-cta";
 import { PhoneLink } from "@/components/content/phone-link";
 import { TrustRail } from "@/components/content/trust-rail";
+import { BUSINESS } from "@/lib/brand";
 import {
   breadcrumbSchema,
   combineGraph,
@@ -106,7 +107,7 @@ export default function TestimonialsPage() {
             </p>
             <div className="mt-9">
               <Link
-                href="https://www.google.com/search?q=J.+James+Painting+Contractors+Sunshine+Coast+reviews"
+                href={BUSINESS.googleReviewsUrl}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="inline-flex items-center gap-2 text-sm font-medium text-navy hover:text-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
@@ -174,7 +175,7 @@ export default function TestimonialsPage() {
               </p>
             </div>
             <Link
-              href="https://www.google.com/search?q=J.+James+Painting+Contractors+Sunshine+Coast+reviews"
+              href={BUSINESS.googleReviewsUrl}
               target="_blank"
               rel="noreferrer noopener"
               className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-navy hover:text-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green md:mt-0"
@@ -203,6 +204,15 @@ export default function TestimonialsPage() {
             <div className="flex flex-col gap-3 md:items-end">
               <QuoteCTA>Get a quote for next time</QuoteCTA>
               <PhoneLink size="lg" />
+              <Link
+                href={BUSINESS.googleReviewsUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center gap-2 text-sm font-medium text-navy hover:text-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
+              >
+                Leave a Google review
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </Container>

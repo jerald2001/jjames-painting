@@ -38,6 +38,16 @@ export const BUSINESS = {
     facebook: "", // TBC — not linked from the legacy site (a FB page may exist; client to confirm URL)
     instagram: "", // TBC — not linked from the legacy site
   },
+  // Google Business Profile deep link, keyed by the CID (17768154900999296078)
+  // extracted from the client-supplied Maps share URL for JJAMES PAINTING
+  // CONTRACTORS PTY LTD. Opens the profile with its reviews + "Write a review".
+  googleReviewsUrl: "https://www.google.com/maps?cid=17768154900999296078",
+  // Official Google "Share > Embed a map" iframe URL for the profile, pinned to
+  // the JJAMES PAINTING CONTRACTORS PTY LTD place ID (footer map on every page).
+  googleMapsEmbedUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1850097.134020382!2d151.82051875!3d-25.08591405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b9399d32d665bbf%3A0xf6952abe242dd44e!2sJJAMES%20PAINTING%20CONTRACTORS%20PTY%20LTD!5e0!3m2!1sen!2sph!4v1779948983175!5m2!1sen!2sph",
+  // Public link target for the footer map's "Open in Google Maps" affordance.
+  googleMapsUrl: "https://maps.app.goo.gl/NMq4aar2UGGhgxBs7",
   // Sunshine Coast region centroid placeholder. Replace with the address-derived
   // coordinates once the client confirms the address (per docs/seo/local-seo.md).
   geo: {

@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Eyebrow } from "@/components/content/eyebrow";
 import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
+import { BUSINESS } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
 /**
@@ -89,7 +90,7 @@ export function HomeTestimonials() {
             reviews land here once consent is signed.
           </p>
           <Link
-            href="https://www.google.com/search?q=J.+James+Painting+Contractors+Sunshine+Coast+reviews"
+            href={BUSINESS.googleReviewsUrl}
             target="_blank"
             rel="noreferrer noopener"
             className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-navy hover:text-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green md:mt-0"

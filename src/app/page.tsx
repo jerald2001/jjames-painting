@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+// Hidden until the client supplies signed, named reviews. The current cards are
+// illustrative scope samples; flip to true to restore. Component left intact.
+const SHOW_TESTIMONIALS = false;
+
 export default function HomePage() {
   const graph = combineGraph(
     localBusinessSchema(),
@@ -38,7 +42,7 @@ export default function HomePage() {
       <HomeWhyUs />
       <HomeProjectsCarousel />
       <HomeHowItWorks />
-      <HomeTestimonials />
+      {SHOW_TESTIMONIALS && <HomeTestimonials />}
       <HomeSuburbs />
       <HomeFinalCTA />
     </>

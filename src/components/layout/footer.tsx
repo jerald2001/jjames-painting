@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { ArrowUpRight, Clock, MapPin, Phone } from "lucide-react";
 import { Wordmark } from "@/components/icons/wordmark";
+import { LocationMap } from "@/components/content/location-map";
 import {
   BUSINESS,
   LEGACY_SERVICES,
@@ -26,6 +28,73 @@ export function Footer() {
 
   return (
     <footer className="bg-navy text-cream">
+      <section className="border-b border-navy/10 bg-[#faf8f5] text-navy">
+        <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-8 md:py-20">
+          <div className="grid gap-10 md:grid-cols-2 md:items-stretch lg:gap-16">
+            <div className="min-h-[320px] md:min-h-[440px]">
+              <LocationMap />
+            </div>
+
+            <div className="flex flex-col justify-center">
+              <span className="text-xs font-medium uppercase tracking-[0.18em] text-green">
+                Visit us
+              </span>
+              <h2 className="mt-3 font-heading text-3xl font-medium leading-[1.05] tracking-[-0.025em] text-navy md:text-4xl">
+                Find us
+              </h2>
+              <p className="mt-4 max-w-md text-sm leading-[1.7] text-ink-soft">
+                {BUSINESS.region} painters since {BUSINESS.foundedYear}, serving
+                homes from Noosa to Caloundra. Get in touch to book a quote.
+              </p>
+
+              <dl className="mt-8 space-y-5 text-sm">
+                <div className="flex items-start gap-3">
+                  <MapPin size={18} className="mt-0.5 shrink-0 text-green" aria-hidden="true" />
+                  <div>
+                    <dt className="font-medium text-navy">Service area</dt>
+                    <dd className="mt-0.5 text-ink-soft">
+                      {BUSINESS.region}, {BUSINESS.state}
+                    </dd>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Phone size={18} className="mt-0.5 shrink-0 text-green" aria-hidden="true" />
+                  <div>
+                    <dt className="font-medium text-navy">Phone</dt>
+                    <dd className="mt-0.5">
+                      <a
+                        href={`tel:${BUSINESS.phoneE164}`}
+                        className="text-ink-soft transition-colors hover:text-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
+                      >
+                        {BUSINESS.phone}
+                      </a>
+                    </dd>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Clock size={18} className="mt-0.5 shrink-0 text-green" aria-hidden="true" />
+                  <div>
+                    <dt className="font-medium text-navy">Hours</dt>
+                    <dd className="mt-0.5 text-ink-soft">Mon–Fri 7:00–17:00</dd>
+                    <dd className="text-ink-soft">Sat 8:00–13:00</dd>
+                  </div>
+                </div>
+              </dl>
+
+              <Link
+                href={BUSINESS.googleMapsUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="mt-9 inline-flex w-fit items-center gap-2 rounded-full bg-navy px-6 py-3 text-sm font-medium text-cream shadow-[0_16px_36px_-16px_rgb(20_34_92/0.6)] transition-[transform,background-color] hover:bg-navy/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green active:translate-y-px"
+              >
+                Open in Google Maps
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-8 md:py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
