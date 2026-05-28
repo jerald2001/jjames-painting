@@ -1,42 +1,29 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Star } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Eyebrow } from "@/components/content/eyebrow";
-import { PhotoPlaceholder } from "@/components/content/photo-placeholder";
 import { BUSINESS } from "@/lib/brand";
-import { cn } from "@/lib/utils";
 
 /**
- * Three testimonial cards in a collage/overlap layout.
- * Sample copy until the client supplies signed-permission quotes (see brief §13).
- * The visible "Sample review" pill on each card + the section-level banner
- * make it clear these are illustrative, not real, claims.
+ * Real client reviews carried over verbatim from the legacy site's testimonials
+ * page (jjamespaintingcontractorsqld.com.au/testimonials). Text only, no photos.
  */
-const TESTIMONIALS = [
+const REVIEWS = [
   {
     quote:
-      "Painted our listing in four days. Photos went up Friday and the offer landed the following Wednesday.",
-    scope: "Pre-sale exterior + interior",
-    treatment: "exterior" as const,
-    rotation: "md:-rotate-1",
-    offset: "md:mt-0",
+      "I've had several homes and a complex renovation built over the past six years, and have always had J. James Painting Contractor complete their work on time and with attention to detail.",
+    name: "Garry and Jeannette",
   },
   {
     quote:
-      "Rental repainted between tenants in three days. Owner photo pack landed the same week.",
-    scope: "Rental between-tenancy",
-    treatment: "interior" as const,
-    rotation: "md:rotate-1",
-    offset: "md:mt-12",
+      "The painters have left, completed all the work and I have to say an excellent, professional job. Totally professional, polite and incredibly efficient.",
+    name: "Alan Cameron",
   },
   {
     quote:
-      "Heritage cottage repaint, done the right way. They asked the questions other painters didn&rsquo;t.",
-    scope: "Heritage Queenslander",
-    treatment: "hinterland" as const,
-    rotation: "md:-rotate-1",
-    offset: "md:mt-6",
+      "They have been painting for my company now for two years. In that time I have found their knowledge, attitude, and quality to the trade to be of the highest standard.",
+    name: "Grant McDonald",
   },
 ];
 
@@ -51,49 +38,39 @@ export function HomeTestimonials() {
           </h2>
         </div>
 
-        <ul className="grid gap-8 md:grid-cols-3 md:gap-6">
-          {TESTIMONIALS.map((t) => (
-            <li
-              key={t.scope}
-              className={cn(
-                "transition-transform",
-                t.rotation,
-                t.offset,
-              )}
-            >
-              <article className="overflow-hidden rounded-md border border-navy/10 bg-cream-cool shadow-[0_16px_40px_-24px_rgb(20_34_92/0.35)]">
-                <div className="relative aspect-[4/3]">
-                  <PhotoPlaceholder
-                    alt={`Sample ${t.scope.toLowerCase()} project`}
-                    treatment={t.treatment}
-                  />
-                  <span className="absolute left-4 top-4 rounded-sm bg-navy/85 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-cream">
-                    Sample review
-                  </span>
+        <ul className="grid gap-6 md:grid-cols-3">
+          {REVIEWS.map((r) => (
+            <li key={r.name}>
+              <article className="flex h-full flex-col rounded-md border border-navy/10 bg-cream-cool p-7 shadow-[0_16px_40px_-24px_rgb(20_34_92/0.35)]">
+                <div
+                  className="flex gap-1 text-green"
+                  role="img"
+                  aria-label="Rated five out of five stars"
+                >
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} size={16} className="fill-current" aria-hidden="true" />
+                  ))}
                 </div>
-                <div className="p-6 md:p-7">
-                  <blockquote className="font-heading text-lg italic leading-snug text-navy md:text-xl">
-                    <span dangerouslySetInnerHTML={{ __html: `&ldquo;${t.quote}&rdquo;` }} />
-                  </blockquote>
-                  <footer className="mt-5 text-xs font-medium uppercase tracking-[0.18em] text-ink-muted">
-                    {t.scope}
-                  </footer>
-                </div>
+                <blockquote className="mt-5 flex-1 font-heading text-lg italic leading-snug text-navy">
+                  &ldquo;{r.quote}&rdquo;
+                </blockquote>
+                <footer className="mt-6 text-xs font-medium uppercase tracking-[0.18em] text-ink-muted">
+                  {r.name}
+                </footer>
               </article>
             </li>
           ))}
         </ul>
 
-        <div className="mt-10 rounded-md border border-navy/10 bg-cream-cool px-5 py-4 md:flex md:items-center md:justify-between md:gap-6">
+        <div className="mt-10 flex flex-col items-start gap-3 border-t border-navy/10 pt-6 md:flex-row md:items-center md:justify-between">
           <p className="text-sm text-ink-soft">
-            The reviews above are illustrative scope samples. Real named
-            reviews land here once consent is signed.
+            More reviews from homeowners and builders across the Sunshine Coast.
           </p>
           <Link
             href={BUSINESS.googleReviewsUrl}
             target="_blank"
             rel="noreferrer noopener"
-            className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-navy hover:text-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green md:mt-0"
+            className="inline-flex items-center gap-2 text-sm font-medium text-navy transition-colors hover:text-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
           >
             Read our Google reviews
             <ArrowUpRight size={16} aria-hidden="true" />
