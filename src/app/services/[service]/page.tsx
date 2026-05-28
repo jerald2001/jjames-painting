@@ -22,6 +22,11 @@ import {
   serviceSchema,
 } from "@/lib/schema";
 
+// TODO(photography-day): unhide this section when real before/after pairs are
+// supplied by the client. Flip to true to restore the pre-sale before/after
+// section (the ServiceBeforeAfter component is intact, just gated off).
+const SHOW_BEFORE_AFTER = false;
+
 type Params = { service: string };
 
 export function generateStaticParams(): Params[] {
@@ -118,7 +123,9 @@ export default async function ServicePage({
       <ServiceIntro intro={content.intro} />
       {content.roi && <ServiceROI roi={content.roi} />}
       <ServiceProcess process={content.process} />
-      {content.beforeAfter && <ServiceBeforeAfter data={content.beforeAfter} />}
+      {SHOW_BEFORE_AFTER && content.beforeAfter && (
+        <ServiceBeforeAfter data={content.beforeAfter} />
+      )}
       {content.agentBridge && (
         <ServiceAgentBridge data={content.agentBridge} />
       )}
