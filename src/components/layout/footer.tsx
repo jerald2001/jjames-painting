@@ -31,10 +31,6 @@ export function Footer() {
       <section className="border-b border-navy/10 bg-[#faf8f5] text-navy">
         <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-8 md:py-20">
           <div className="grid gap-10 md:grid-cols-2 md:items-stretch lg:gap-16">
-            <div className="min-h-[320px] md:min-h-[440px]">
-              <LocationMap />
-            </div>
-
             <div className="flex flex-col justify-center">
               <span className="text-xs font-medium uppercase tracking-[0.18em] text-green">
                 Visit us
@@ -85,11 +81,15 @@ export function Footer() {
                 href={BUSINESS.googleMapsUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="mt-9 inline-flex w-fit items-center gap-2 rounded-full bg-navy px-6 py-3 text-sm font-medium text-cream shadow-[0_16px_36px_-16px_rgb(20_34_92/0.6)] transition-[transform,background-color] hover:bg-navy/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green active:translate-y-px"
+                className="mt-9 inline-flex w-fit items-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-medium text-navy-deep shadow-[0_16px_36px_-16px_rgb(20_34_92/0.5)] transition-[transform,background-color] hover:-translate-y-px hover:bg-green-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy active:translate-y-0 active:bg-green-deep"
               >
                 Open in Google Maps
                 <ArrowUpRight size={16} aria-hidden="true" />
               </Link>
+            </div>
+
+            <div className="min-h-[320px] md:min-h-[440px]">
+              <LocationMap />
             </div>
           </div>
         </div>
